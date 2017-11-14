@@ -13,6 +13,7 @@
     //Se agrega el renderer a el documento html, el cual es un "canvas" para poder mostrar la escena que creamos. 
     document.body.appendChild(renderer.domElement); 
 
+    //Sirve para que las sombras se esten redibujando en la escena
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.soft = true;
     renderer.shadowMap.type = THREE.PCFShadowMap;
@@ -21,7 +22,7 @@
     //Primer Primitiva: Cubo    
     //Geomtery es la variable que contiene la geometria de la primitiva a dibujar
     var Geometry1 = new THREE.BoxGeometry(15,15,15);
-    //Material toma de un objeto las propiedades que seran aplicadas a la geometria.
+    //Se usa Phong para poder ver las sombras de nuestras figuras
     var Material1 = new THREE.MeshPhongMaterial({ color: 0x00ff00 });
     //Mesh es ub objeto el cual requiere de una Geometria a la cual le aplicara el Material declarado anteriormente.
     var Cube = new THREE.Mesh(Geometry1, Material1);
@@ -30,6 +31,7 @@
     Cube.position.y = 5;
     Cube.position.z = -10;
 
+    //cast sirve para proyectar una sombra y el receive hace que el objeto reciba la sombra
     Cube.receiveShadow = true;
     Cube.castShadow = true;
     //se añade la primitiva a la escena para que sea mostrada.
@@ -65,7 +67,7 @@
     Camera.position.z = 60;
     Camera.position.y = 10;
 
-//
+//La funcion permite iluminar las figuras, sombras y el plano
 let pointLight = new THREE.PointLight(0x909090);
 
 pointLight.position.y = 100;
@@ -85,11 +87,7 @@ plane.position.z = -40;
 plane.position.y = 0;
 Scene.add(plane);
 
-//Cube.castShadow = true;
-//torus.castShadow = true;
-//cone.castShadow = true;
-
-
+//Tener el control de todo el espacio de la camara
 let controls = new THREE.OrbitControls(Camera, renderer.domElement);
     function animate() {
         //Se crea un ciclo infinito el cual dibujara 60 veces por segundo la escena y lo que contenga.

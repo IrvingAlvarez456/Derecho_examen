@@ -100,5 +100,25 @@ let controls = new THREE.OrbitControls(Camera, renderer.domElement);
     }
     // se le manda llamar a la funcion animate para que se este redibujando la escena. 
     animate();
+    
+    // funcion para las teclas para que cambien las texturas
+    document.body.onkeypress = function(e) {
+        //la variable q cambiara segun la tecla que se presione
+        var x = e.keycode
+            //la textura que se pondra cuando se presione las teclas
+        texture = new THREE.TextureLoader().load('public/wall.jpg');
+        //si se presiona la letra "a" cambiara la textura del cubo
+        if (x === 97) {
+            Cube.Material1 = new THREE.MeshBasicMaterial({ map: texture });
+        }
+        //si se presiona la tecla "s" cambiara la textura de la piramide
+        if (x === 115) {
+            cone.material = new THREE.MeshBasicMaterial({ map: texture });
+        }
+        //si se presiona la tecla "d" cambiara la textura de la dona
+        if (x === 100) {
+            torus.material = new THREE.MeshBasicMaterial({ map: texture });
+        }
+    }
 
 })();

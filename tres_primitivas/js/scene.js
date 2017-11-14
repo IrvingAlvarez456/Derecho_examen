@@ -106,7 +106,7 @@ let controls = new THREE.OrbitControls(Camera, renderer.domElement);
         //la variable q cambiara segun la tecla que se presione
         var x = e.keycode
             //la textura que se pondra cuando se presione las teclas
-        texture = new THREE.TextureLoader().load('public/wall.jpg');
+        texture = new THREE.TextureLoader().load('wall.jpg');
         //si se presiona la letra "a" cambiara la textura del cubo
         if (x === 97) {
             Cube.Material1 = new THREE.MeshBasicMaterial({ map: texture });
